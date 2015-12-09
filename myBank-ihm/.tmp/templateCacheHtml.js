@@ -1,0 +1,4 @@
+angular.module("MyBankApp").run(["$templateCache", function($templateCache) {$templateCache.put("app/accueil/accueil.html","<h1>{{ message }}</h1>");
+$templateCache.put("app/comptes/comptes.html","<h1>{{ message }}</h1>");
+$templateCache.put("app/operations/operations.html","<h1>{{ message }}</h1>");
+$templateCache.put("components/navbar/navbar.html","<nav class=\"navbar navbar-default\"><a class=\"navbar-brand\" ui-sref=\"accueil\">MyBank</a><ul class=\"nav navbar-nav\"><li ui-sref-active=\"active\"><a ui-sref=\"accueil\">Accueil</a></li><li ui-sref-active=\"active\"><a ui-sref=\"comptes\">Comptes</a></li><li ui-sref-active=\"active\"><a ui-sref=\"operations\">Opérations</a></li></ul></nav>");}]);

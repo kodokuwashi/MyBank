@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+       http://www.springframework.org/schema/data/mongo
+       http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
+
+    <bean
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <value>database.properties</value>
+        </property>
+    </bean>
+    
+    <mongo:mongo replica-set="${mongo.db.host}" id="mongoFactoryBean" />
+
+	<bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">
+		<constructor-arg name="username" value="${mongo.db.user}"/>
+		<constructor-arg name="password" value="${mongo.db.password}"/>
+	</bean>
+	
+    <bean id="mongoDbFactory"
+        class="org.springframework.data.mongodb.core.SimpleMongoDbFactory">
+        <constructor-arg name="mongo" ref="mongoFactoryBean" />
+        <constructor-arg name="databaseName" value="${mongo.db.name}" />
+        <constructor-arg name="credentials" ref="mongoCredentials"/>
+    </bean>
+
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+    </bean>
+
+    <!-- DAOs -->
+    <bean id="compteDao" class="com.lezardino.mybank.dao.impl.CompteDaoImpl" />
+    <bean id="operationDao" class="com.lezardino.mybank.dao.impl.OperationDaoImpl" />
+    <bean id="categorieDao" class="com.lezardino.mybank.dao.impl.CategorieDaoImpl" />
+    <bean id="budjetDao" class="com.lezardino.mybank.dao.impl.BudjetDaoImpl" />
+    <bean id="virementDao" class="com.lezardino.mybank.dao.impl.VirementDaoImpl" />
+
+</beans>

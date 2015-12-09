@@ -1,0 +1,12 @@
+# IntelliJ
+*.iml
+*.idea
+
+# Maven
+target/
+
+#npm
+node_modules/
+
+#bower
+bower_components/

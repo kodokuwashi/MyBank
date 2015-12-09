@@ -1,0 +1,75 @@
+/**
+* Définition des couleurs principales de la barre de navigation
+*/
+nav.navbar {
+  background: @base;
+  color: @text;
+
+  /**
+  * Titre de l'application
+  */
+  .navbar-brand {
+    font-size: 1.250em;
+    font-weight: 400;
+    margin: auto;
+    color: @textHighlight;
+
+    i {
+      margin-right: 10px;
+    }
+  }
+
+  /**
+  * Eléments de navigation
+  */
+  .navbar-nav {
+    font-family: Montserrat, Arial;
+
+    a {
+      color: @text;
+    }
+
+    a:hover, li.active > a {
+      background: @light;
+    }
+
+    a:focus {
+      background: @base;
+    }
+  }
+
+  /**
+  * Recherche
+  */
+  .search-box {
+    padding-top: 9px;
+    padding-left: 18px;
+
+    input {
+      width: 260px;
+      height: 30px;
+    }
+  }
+
+  .navbar-toggle {
+    background: @light;
+
+    span.icon-bar {
+      background: @textHighlight;
+    }
+  }
+
+  /**
+  * Nom de l'utilisateur
+  */
+  .username {
+    margin-top: 8px;
+    background-color: lighten(@base, 10%);
+    padding: 6px 10px 6px 10px;
+    border-radius: 3px;
+
+    i.fa {
+      margin-right: 10px;
+    }
+  }
+}

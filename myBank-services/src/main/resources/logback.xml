@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
+            </Pattern>
+        </encoder>
+    </appender>
+
+    <!--Appender FICHIER pour logs APPLICATIFS -->
+    <appender name="FICHIER_APPLICATIF"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy
+            class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>C:/Users/pisalaun/Workspace/logs/myBank_%d.log
+            </FileNamePattern>
+            <maxHistory>30</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss};%-5p;[%C:%L];%m%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.lezardino.mybank" level="debug" additivity="false">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <root level="error">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>
