@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
-var browserSync = require('browser-sync').create();
+var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var paths = {
   scripts: ['src/**/*.html', 'src/**/*.js']
