@@ -1,0 +1,604 @@
+@base: #03A9F4;
+@light: lighten(@base, 15%);
+@text: lighten(@base, 50%);
+@pageBackground: lighten(@base, 48%);
+@textHighlight: #FFFFFF;
+@headerColor: #F16421;
+@okColor: #4CAF50;
+@koColor: #EF5350;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  padding-top: 51px;
+  background: @pageBackground;
+}
+
+.unsupported-browser {
+  background-color: #f2dede;
+  color: #d9534f;
+  font-weight: bold;
+  margin: 30px;
+  padding: 30px;
+}
+
+/**
+* Erreurs
+*/
+.backend-error {
+  display: none;
+
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  min-height: 500px;
+  top: 51px;
+  text-align: center;
+  padding-top: 70px;
+  font-size: 18px;
+  font-weight: bold;
+
+  background-color: #f2dede;
+  color: #d9534f;
+
+  &.visible {
+    display: block;
+  }
+
+  h2 {
+    color: #d9534f;
+  }
+}
+
+/**
+* Titres
+*/
+h2, h3 {
+  font-family: Arial;
+}
+
+h2 {
+  font-size: 1.5em;
+  color: @headerColor;
+  margin-bottom: 15px;
+}
+
+h3 {
+  font-size: 1.3em;
+  color: lighten(@headerColor, 15%);;
+  margin-bottom: 10px;
+}
+
+/**
+* Spinners de chargement
+*/
+
+.loading {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: 40px;
+}
+
+/**
+* Liens
+*/
+a {
+  color: darken(@base, 15%);
+}
+
+a.button-wrapper:hover {
+  text-decoration: none;
+}
+
+/**
+* Références
+*/
+
+.reference {
+  cursor: pointer;
+  display: inline;
+  padding: 3px 7px 3px 7px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  background-color: #337ab7;
+}
+
+.reference:hover {
+  background-color: lighten(#337ab7, 15%);
+  text-decoration: none;
+  color: lighten(#ffffff, 15%);
+}
+
+
+/**
+* Boites
+*/
+
+.basic-box {
+  width: 100%;
+  background: #EEEEEE;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.status-box, .box {
+  margin-top: 25px;
+}
+
+.box {
+  border-top: 3px solid #dedede;
+  border-right: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+
+  background: #ffffff;
+  color: #676a6c;
+  clear: both;
+
+  padding: 0;
+
+  .box-content {
+    padding: 10px;
+
+    table {
+      margin-bottom: 0;
+    }
+  }
+
+  .box-actions {
+    text-align: center;
+    padding: 20px 0px 10px 0px;
+
+    i.fa {
+      margin-right: 10px;
+    }
+  }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 10px 15px 10px;
+    min-height: 30px;
+
+    font-size: 1.15em;
+    font-weight: 600;
+    border-bottom: 1px solid #eeeeee;
+  }
+}
+
+ul.box-content {
+  list-style-type: none;
+  margin-bottom: 0;
+
+  span {
+    display: inline-block;
+    width: 170px;
+    font-weight: bold;
+  }
+
+  span.nested {
+    width: auto;
+  }
+
+  span.heure {
+    font-weight: normal;
+    color: #acb2b5;
+    font-size: 0.9em;
+    margin-left: 5px;
+  }
+
+  li {
+    line-height: 36px;
+    border-bottom: 1px solid #dedede;
+  }
+
+  li:last-child {
+    border-bottom: 0;
+  }
+
+  .modify-button {
+    float: right;
+    margin-top: 5px;
+  }
+}
+
+.status-box {
+  padding: 10px;
+  overflow: auto;
+  color: #FFFFFF;
+
+  i.fa {
+    margin-top: 8px;
+    font-size: 26px;
+    float: left;
+    width: 60px;
+    height: 36px;
+    text-align: center;
+  }
+
+  p {
+    margin: 0;
+
+  }
+
+  button {
+    margin-top: 6px;
+    margin-bottom: 4px;
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.status-box.status-ok {
+  background: @okColor;
+}
+
+.status-box.status-warning {
+  background: #FFA000;
+  button {
+    background: #FFB300;
+    border-color: #FF8F00;
+    color: #FFFFFF;
+  }
+
+  button:hover {
+    background: #FF8F00;
+  }
+
+}
+
+
+.status-box.status-danger {
+  background: @koColor;
+}
+
+/**
+* Tableaux
+*/
+td.danger {
+  color: @koColor;
+  font-weight: bold;
+}
+
+.actions {
+  td:first-child {
+    width: 160px;
+  }
+}
+
+.valorisable {
+  width: 100px;
+  text-align: center;
+
+  .ok-valo {
+    color: @okColor;
+  }
+
+  .ko-valo {
+    color: @koColor;
+  }
+}
+
+/**
+* Validation
+*/
+
+.validation-status {
+  text-align: center;
+  min-height: 150px;
+}
+
+.validation-status .status-image {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.validation-status.warning {
+  background-color: #fcf8e3;
+  color: #f0ad4e;
+}
+
+.validation-status.success {
+  background-color: #dff0d8;
+  color: #3c763d;
+  min-height: 110px;
+}
+
+.validation-status.info {
+  background-color: #d9edf7;
+  color: #31708f;
+}
+
+
+.validation-status button {
+  margin-top: 5px;
+}
+
+.validation-status.validation-alt {
+  min-height: 0;
+  margin-bottom: 15px;
+}
+
+/**
+* Statistiques
+*/
+.metrics {
+  overflow: auto;
+  position: relative;
+
+  embed {
+    width: 100%;
+    height: 1100px;
+  }
+
+  h3 {
+    float: left;
+    background: #EEEEEE;
+    width: 100%;
+    line-height: 80px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    color: #9E9E9E;
+
+  }
+}
+
+/**
+* Sidebar
+*/
+
+.sidebar {
+  padding: 0;
+
+  h3 {
+    padding: 10px;
+    background: #607D8B;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: Arial;
+  }
+
+  h3.first {
+    margin-top: 0;
+  }
+
+  li.active {
+    background-color: #eeeeee;
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  a i {
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: block;
+    margin-top: 50px;
+    background-color: #ffffff;
+    border-right: 3px solid #dedede;
+  }
+}
+
+/**
+* Modal (dialog)
+*/
+.rbrsva-modal {
+  margin-top: 15px;
+  margin-bottom: 0px;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  form {
+    padding-bottom: 10px;
+  }
+}
+
+.input-group[class*="col-"] {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/**
+* Help box
+*/
+.help {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+  border-left-color: @base;
+  background: #ffffff;
+  color: #676a6c;
+
+  i.fa {
+    float: left;
+    font-size: 24px;
+    margin-right: 20px;
+    color: @base;
+  }
+
+  p {
+    margin: 0;
+    padding-left: 40px;
+  }
+}
+
+/**
+* Boite de calcul
+*/
+
+.calcul-date {
+  margin-bottom: 5px;
+}
+
+.calcul {
+  list-style-type: none;
+  padding: 12px 0 0 12px;
+
+  .operator {
+    display: block;
+    float: left;
+    min-width: 20px;
+    color: darken(@base, 30%);
+    font-weight: bold;
+  }
+
+  .comment {
+    display: block;
+    float: right;
+    color: #acb2b5;
+    font-style: italic;
+  }
+
+  li {
+    line-height: 26px;
+  }
+
+  .sousTotal {
+    border-top: 1px dashed #676a6c;
+    color: #EF5350;
+    font-weight: bold;
+  }
+
+  .total {
+    border-top: 1px solid #676a6c;
+    color: #C62828;
+    font-weight: bold;
+  }
+
+  .operation {
+    color: #a0a5a8;
+    font-weight: bold;
+  }
+}
+
+.calculExplain {
+  padding: 10px;
+  color: darken(@base, 30%);
+
+  i.fa {
+    float: left;
+    font-size: 16px;
+    margin-right: 15px;
+    color: @base;
+    height: 100px;
+    padding-top: 20px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+/**
+* Formulaires
+*/
+form {
+  label {
+    color: darken(@base, 30%);
+
+    .hint {
+      display: block;
+      font-size: 0.8em;
+      font-style: italic;
+
+      color: lighten(@base, 10%);
+    }
+
+    .optional {
+      color: #acb2b5;
+    }
+  }
+}
+
+.form-error {
+  strong {
+    display: block;
+    clear: both;
+  }
+
+  p {
+    margin-top: 10px;
+  }
+
+  .error-code {
+    margin-bottom: 10px;
+    float: right;
+    font-style: italic;
+    font-family: Arial;
+  }
+}
+
+/**
+* Erreurs
+*/
+.error {
+  padding-top: 40px;
+  color: #EF5350;
+  font-weight: bold;
+  text-align: center;
+
+  h2 {
+    color: #EF5350;
+    margin-bottom: 30px;
+  }
+}
+
+.unauthorized {
+  margin-top: 40px;
+  background-color: lighten(@koColor, 30%);
+  padding-bottom: 20px;
+
+  i.fa {
+    font-size: 72px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: lighten(#EF5350, 10%);
+  }
+}
+
+/**
+* Recherche
+*/
+
+.angucomplete-description {
+  color: #acb2b5;
+  font-size: 0.8em;
+}
+
+.angucomplete-selected-row {
+  background: lighten(@base, 47%);
+  color: @headerColor;
+}
+
+// injector
+// endinjector
