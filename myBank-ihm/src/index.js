@@ -1,7 +1,7 @@
 'use strict';
 
-var myBankApp = angular.module('MyBankApp', ['ui.router'])
-.config(function ($stateProvider, $urlRouterProvider ) {
+var myBankApp = angular.module('MyBankApp', ['ui.router', 'restangular', 'MyBankApp.config'])
+.config(function ($stateProvider, $urlRouterProvider, RestangularProvider, API_ENDPOINT) {
 
   $urlRouterProvider.otherwise('/accueil');
 
@@ -33,6 +33,10 @@ var myBankApp = angular.module('MyBankApp', ['ui.router'])
         }
       }
     });
+
+    // Configuration de l'URL des ressources exposées par les services RBRSVA
+    RestangularProvider.setBaseUrl(API_ENDPOINT);
+    RestangularProvider.setDefaultHttpFields({withCredentials: true});
 })
 .run(function($rootScope) {
 

@@ -1,1 +1,33 @@
-<h1>{{ message }}</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="box">
+        <div class="box-title">
+          <h2>Comptes</h2>
+        </div>
+        <div class="box-content">
+          <div class="no-content" ng-if="comptes.length == 0">Aucun compte</div>
+          <table class="table table-condensed rbrsva-table" ng-if="integrations.length > 0">
+            <thead>
+              <tr>
+                <th>Libellé</th><th>Propriétaire</th><th>Solde</th><th>Voir</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="compte in comptes">
+                <td>{{ compte.libelle }}</td>
+                <td>{{ compte.proprietaire }}</td>
+                <td>{{ compte.solde }}</td>
+                <td>
+                  <a href="{{ $state.href('operations', {compte: compte.idCompte}) }}" class="button-wrapper">
+                    <button type="button" class="btn btn-default btn-sm">Voir</button>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
