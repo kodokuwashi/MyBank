@@ -14,7 +14,7 @@
         class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy
             class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>C:/Users/pisalaun/Workspace/logs/myBank_%d.log
+            <FileNamePattern>C:/MyBank/myBank-services/logs/myBank_%d.log
             </FileNamePattern>
             <maxHistory>30</maxHistory>
             <cleanHistoryOnStart>true</cleanHistoryOnStart>
@@ -25,11 +25,11 @@
     </appender>
 
     <logger name="com.lezardino.mybank" level="debug" additivity="false">
-        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FICHIER_APPLICATIF" />
     </logger>
 
     <root level="error">
-        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FICHIER_APPLICATIF" />
     </root>
 
 </configuration>

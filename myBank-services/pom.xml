@@ -2,10 +2,10 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.lezardino</groupId>
-	<artifactId>myBank</artifactId>
+	<artifactId>myBank-services</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>myBank Maven Webapp</name>
+	<name>MyBank Services</name>
 	<url>http://maven.apache.org</url>
   
 	<properties>
@@ -20,7 +20,7 @@
         <aspectj.version>1.8.7</aspectj.version>
         
         <!-- jersey -->
-        <jersey.version>1.19</jersey.version>
+        <jersey.version>1.8</jersey.version>
 
         <!-- validation -->
         <validation.version>1.1.0.Final</validation.version>
@@ -101,7 +101,13 @@
             <artifactId>spring-instrument</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
         <!-- Aspect -->
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -109,16 +115,10 @@
             <version>${aspectj.version}</version>
         </dependency>
       
-        <!-- Dependance jersey -->   
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-server</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>
-        
+        <!-- Dependance jersey -->
         <dependency>
-            <groupId>org.glassfish.jersey.ext</groupId>
-            <artifactId>jersey-bean-validation</artifactId>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
             <version>${jersey.version}</version>
         </dependency>
         
@@ -128,13 +128,7 @@
             <artifactId>validation-api</artifactId>
             <version>${validation.version}</version>
         </dependency>
-        
-        <!-- Servlet -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${servlet.version}</version>
-        </dependency>
+
 
         <!-- mongodb java driver -->
         <dependency>
@@ -180,7 +174,7 @@
                 <configuration>
                     <url>http://localhost:8080/manager/text</url>
                     <server>TomcatServer</server>
-                    <path>/myBank</path>
+                    <path>/myBank-services</path>
                     <contextReloadable>true</contextReloadable>
                 </configuration>
             </plugin>
@@ -197,4 +191,14 @@
             </plugin>
        </plugins>
    </build>
+
+    <!-- Définition des profils -->
+    <profiles>
+        <profile>
+            <id>no-test</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+    </profiles>
 </project>

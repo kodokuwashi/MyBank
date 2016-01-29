@@ -10,7 +10,7 @@
     <bean
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
-            <value>database.properties</value>
+            <value>classpath:database.properties</value>
         </property>
     </bean>
     

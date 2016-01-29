@@ -29,7 +29,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Component;
 
 import com.lezardino.mybank.erreur.ErreurFonctionnelle;
@@ -42,7 +41,6 @@ import com.lezardino.mybank.ressource.RSList;
  * @author pisalaun
  *
  */
-@Path("/compte")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Component
@@ -79,7 +77,7 @@ public interface IServiceCompte {
      */
     @GET
     RSList<Compte> listAll(@DefaultValue("0") @QueryParam("offset") final Integer offset,
-           @DefaultValue("0") @QueryParam("limit") final Integer limit,
+           @DefaultValue("2") @QueryParam("limit") final Integer limit,
            @DefaultValue("ASC") @QueryParam("direction") final String stringDirection) throws ErreurFonctionnelle;
 
     /**

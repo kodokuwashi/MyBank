@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
@@ -18,6 +19,7 @@ import com.lezardino.mybank.metier.IServiceCompte;
 import com.lezardino.mybank.modele.Compte;
 import com.lezardino.mybank.ressource.RSList;
 
+@Path("/compte")
 @Service("compte")
 public class ServiceCompteImpl implements IServiceCompte {
 
@@ -44,7 +46,7 @@ public class ServiceCompteImpl implements IServiceCompte {
     @Override
     public Response enregistrerCompte(final Compte compte) {
 
-        compteDao.enregistrerCompte(compte);
+        this.compteDao.enregistrerCompte(compte);
 
         // Retour en 201 avec le bon header Location
         String resourceUri = CREATED_COMPTE_PREFIX + compte.getIdCompte();
@@ -54,7 +56,7 @@ public class ServiceCompteImpl implements IServiceCompte {
     @Override
     public Compte recupererCompte(@Valid @NotNull @PathParam("identifiant") String identifiant)
             throws ErreurFonctionnelle {
-        final Compte compte = compteDao.recupererCompteById(identifiant);
+        final Compte compte = this.compteDao.recupererCompteById(identifiant);
         if (compte == null) {
             throw new ErreurFonctionnelle(ErreurFonctionnelle.CODE_ERREUR_DONNEEINCONNUE,
                     String.format("Le compte d'identifiant %s n'existe pas", identifiant), null);
@@ -68,12 +70,12 @@ public class ServiceCompteImpl implements IServiceCompte {
     @Override
     public RSList<Compte> listAll(final Integer offset, final Integer limit, final String stringDirection)
             throws ErreurFonctionnelle {
-        long resultsCount = compteDao.nombreComptes();
+        long resultsCount = this.compteDao.nombreComptes();
         Direction direction = Direction.ASC;
         if(stringDirection.equals("DESC")){
             direction = Direction.DESC;
         }
-        List<Compte> listeCompte = compteDao.listerComptes(offset, limit, direction);
+        List<Compte> listeCompte = this.compteDao.listerComptes(offset, limit, direction);
 
         final RSList<Compte> rsCompte = new RSList<>(URI_PATTERN, resultsCount, listeCompte);
         rsCompte.setPreviousLink(offset, limit, direction);
@@ -85,7 +87,7 @@ public class ServiceCompteImpl implements IServiceCompte {
 
     @Override
     public Response supprimerCompte(final Compte compte) {
-        compteDao.supprimerCompte(compte);
+        this.compteDao.supprimerCompte(compte);
 
         // Retour en 201 avec le bon header Location
         String resourceUri = DELETED_COMPTE_PREFIX;

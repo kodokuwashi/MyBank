@@ -32,7 +32,6 @@ import javax.ws.rs.core.Response;
  * @author pisalaun
  *
  */
-@Path("/operation")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Component

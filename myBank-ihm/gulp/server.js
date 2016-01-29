@@ -8,7 +8,7 @@ var paths = gulp.paths;
 gulp.task('serve', ['build', 'watch'], function() {
     browserSync.init({
         server: {
-            baseDir: paths.dist
+            baseDir: [paths.dist, paths.config]
         }
     });
 });
