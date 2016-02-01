@@ -41,8 +41,6 @@ import com.lezardino.mybank.ressource.RSList;
  * @author pisalaun
  *
  */
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 @Component
 public interface IServiceCompte {
 
@@ -52,7 +50,6 @@ public interface IServiceCompte {
      * @param compte : compte au format json à enregistrer
      */
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     Response enregistrerCompte(@Valid @NotNull Compte compte);
 
     /**
@@ -63,7 +60,6 @@ public interface IServiceCompte {
      * @throws ErreurFonctionnelle : Erreur metier
      */
     @GET
-    @Path("/{identifiant}")
     Compte recupererCompte(@Valid @NotNull @PathParam("identifiant") final String identifiant)
             throws ErreurFonctionnelle;
 
@@ -86,7 +82,6 @@ public interface IServiceCompte {
      * @param compte : compte à supprimer
      */
     @DELETE
-    @Consumes(MediaType.APPLICATION_JSON)
     Response supprimerCompte(@Valid @NotNull Compte compte);
 
 }
