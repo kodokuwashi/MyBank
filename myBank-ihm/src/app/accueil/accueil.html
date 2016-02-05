@@ -1,13 +1,19 @@
 <div class="container">
+  <div class="error" ng-if="loadingError">
+    <h2>Erreur de chargement du tarif !</h2>
+    <p>{{ loadingError.statusText }}</p>
+  </div>
+
   <div class="row">
     <div class="col-md-8">
       <div class="box">
         <div class="box-title">
           <h2>Comptes</h2>
+          <h2>{{ comptes }}</h2>
         </div>
         <div class="box-content">
           <div class="no-content" ng-if="comptes.length == 0">Aucun compte</div>
-          <table class="table table-condensed rbrsva-table" ng-if="integrations.length > 0">
+          <table class="table table-condensed rbrsva-table" ng-if="comptes.length > 0">
             <thead>
               <tr>
                 <th>Libellé</th><th>Propriétaire</th><th>Solde</th><th>Voir</th>

@@ -5,4 +5,4 @@
  * La configuration "réelle" est générée lors du déploiement par Ansible
  ***************/
 angular.module("MyBankApp.config", [])
-  .constant("API_ENDPOINT", "http://127.0.0.1/myBank_services/api");
+  .constant("API_ENDPOINT", "http://127.0.0.1:8080/myBank-services/api");

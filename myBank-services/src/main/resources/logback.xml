@@ -26,6 +26,7 @@
 
     <logger name="com.lezardino.mybank" level="debug" additivity="false">
         <appender-ref ref="FICHIER_APPLICATIF" />
+        <appender-ref ref="CONSOLE" />
     </logger>
 
     <root level="error">
