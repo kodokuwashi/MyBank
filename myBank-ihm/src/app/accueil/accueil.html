@@ -9,7 +9,6 @@
       <div class="box">
         <div class="box-title">
           <h2>Comptes</h2>
-          <h2>{{ comptes }}</h2>
         </div>
         <div class="box-content">
           <div class="no-content" ng-if="comptes.length == 0">Aucun compte</div>
@@ -33,6 +32,12 @@
             </tbody>
           </table>
         </div>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="box">
+        <button type="button" class="btn btn-primary" ng-click="creerCompte()">Créer</button>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 'use strict';
 
-var myBankApp = angular.module('MyBankApp', ['ui.router', 'restangular', 'MyBankApp.config'])
+var myBankApp = angular.module('MyBankApp', ['ui.router', 'ui.bootstrap', 'restangular', 'MyBankApp.config'])
 .config(function ($stateProvider, $urlRouterProvider, RestangularProvider, API_ENDPOINT) {
 
   $urlRouterProvider.otherwise('/accueil');

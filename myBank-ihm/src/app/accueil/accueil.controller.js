@@ -1,4 +1,4 @@
-angular.module('MyBankApp').controller('AccueilCtrl', function($scope, comptesFactory, pagination, Restangular) {
+angular.module('MyBankApp').controller('AccueilCtrl', function($scope, $modal, comptesFactory, pagination, Restangular) {
     $scope.comptes = []
     $scope.currentPage = 1;
     $scope.comptePerPage = pagination.itemsPerPage;
@@ -10,12 +10,21 @@ angular.module('MyBankApp').controller('AccueilCtrl', function($scope, comptesFa
 
     var loadPage = function(pageNumber) {
       var promise = pagination.loadPage(comptesFactory.tous, pageNumber);
-      $scope.comptes = promise
+      promise.then(function(result){
+          $scope.comptes = result.items
+      });
       $scope.totalComptes = $scope.comptes.length;
     };
 
-    loadPage(1);/*
-    Restangular.one('compte').get().then(function(result){
-      $scope.comptes = result.items
-    });*/
+    /**
+     * Création d'un tarif par défaut
+     */
+    $scope.creerCompte = function() {
+      $modal.open({
+        templateUrl: 'app/comptes/compte.creer.html',
+        controller: 'CompteCreerCtrl'
+      });
+    };
+
+    loadPage(1);
 });
