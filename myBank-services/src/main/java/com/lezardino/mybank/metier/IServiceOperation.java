@@ -43,7 +43,6 @@ public interface IServiceOperation {
      * @param operation : operation au format json à enregistrer
      */
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     Response enregistrerOperation(@Valid @NotNull Operation operation);
 
     /**
@@ -54,7 +53,6 @@ public interface IServiceOperation {
      * @throws ErreurFonctionnelle : Erreur metier
      */
     @GET
-    @Path("/{identifiant}")
     Operation recupererOperation(@Valid @NotNull @PathParam("identifiant") final String idOperation)
             throws ErreurFonctionnelle;
 
@@ -78,7 +76,6 @@ public interface IServiceOperation {
      * @param operation : operation à supprimer
      */
     @DELETE
-    @Consumes(MediaType.APPLICATION_JSON)
-    Response supprimerCompte(@Valid @NotNull Operation operation);
+    Response supprimerOperation(@Valid @NotNull Operation operation);
 
 }
