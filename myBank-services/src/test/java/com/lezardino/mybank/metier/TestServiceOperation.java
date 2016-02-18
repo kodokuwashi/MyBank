@@ -1,8 +1,6 @@
 package com.lezardino.mybank.metier;
 
-import com.lezardino.mybank.dao.CompteDao;
 import com.lezardino.mybank.dao.OperationDao;
-import com.lezardino.mybank.dao.impl.CompteDaoImpl;
 import com.lezardino.mybank.dao.impl.OperationDaoImpl;
 import com.lezardino.mybank.enumeration.TypeOperation;
 import com.lezardino.mybank.erreur.ErreurFonctionnelle;
@@ -11,7 +9,6 @@ import com.lezardino.mybank.modele.Categorie;
 import com.lezardino.mybank.modele.Compte;
 import com.lezardino.mybank.modele.Operation;
 import com.lezardino.mybank.ressource.RSList;
-import org.hibernate.validator.internal.engine.resolver.CachingTraversableResolverForSingleValidation;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -23,11 +20,11 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.mongodb.core.convert.MongoConverters;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +65,7 @@ public class TestServiceOperation {
         Categorie categorie = new Categorie("Categorie", new BigDecimal("5.25"));
         BigDecimal montant = new BigDecimal("3.75");
         String libelleOp = "Test enregistrer opeation";
-        LocalDate date = new LocalDate();
+        LocalDate date = LocalDate.of(2016,02,18);
         Operation operation = new Operation(compte, categorie, montant, libelleOp, TypeOperation.CREDIT, date);
 
         serviceOperation.enregistrerOperation(operation);
@@ -91,7 +88,7 @@ public class TestServiceOperation {
         Categorie categorie = new Categorie("Categorie", new BigDecimal("5.25"));
         BigDecimal montant = new BigDecimal("3.75");
         String libelleOp = "Test enregistrer operation";
-        LocalDate date = new LocalDate();
+        LocalDate date = LocalDate.of(2016,02,18);
         Operation operation = new Operation(compte, categorie, montant, libelleOp, TypeOperation.CREDIT, date);
 
         serviceOperation.supprimerOperation(operation);
@@ -132,7 +129,7 @@ public class TestServiceOperation {
         Categorie categorie = new Categorie("Categorie", new BigDecimal("5.25"));
         BigDecimal montant = new BigDecimal("3.75");
         String libelleOp = "Test enregistrer operation";
-        LocalDate date = new LocalDate();
+        LocalDate date = LocalDate.of(2016,02,18);
         Operation operationAttendu = new Operation(compte, categorie, montant, libelleOp, TypeOperation.CREDIT, date);
 
         Mockito.when(operationDao.recupererOperation(Mockito.any(String.class))).thenReturn(operationAttendu);
@@ -140,9 +137,9 @@ public class TestServiceOperation {
 
         assertThat(operation.getCompte().getIdCompte()).isEqualTo("1234");
         assertThat(operation.getCategorie()).isEqualTo(categorie);
-        assertThat(operation.getMontant())).isEqualTo(montant);
+        assertThat(operation.getMontant()).isEqualTo(montant);
         assertThat(operation.getLibelle()).isEqualTo(libelleOp);
-        assertThat(operation.getTypeOperation())).isEqualTo(TypeOperation.CREDIT);
+        assertThat(operation.getTypeOperation()).isEqualTo(TypeOperation.CREDIT);
         assertThat(operation.getDate()).isEqualTo(date);
 
     }
@@ -164,7 +161,7 @@ public class TestServiceOperation {
         Categorie categorie = new Categorie("Categorie", new BigDecimal("5.25"));
         BigDecimal montant = new BigDecimal("3.75");
         String libelleOp = "Test enregistrer operation";
-        LocalDate date = new LocalDate();
+        LocalDate date = LocalDate.of(2016,02,18);
         Operation operationAttendu = new Operation(compte, categorie, montant, libelleOp, TypeOperation.CREDIT, date);
         operationAttendu.setIdOperation("2");
         Operation operationAttendu2 = new Operation(compte, categorie, montant, libelleOp, TypeOperation.CREDIT, date);
@@ -184,8 +181,8 @@ public class TestServiceOperation {
 
         List<Operation> listeOperation = rsListeOperation.getItems();
         assertThat(listeOperation.size()).isEqualTo(2);
-        assertThat(listeOperation.get(0).getIdOperation).isEqualTo("2");
-        assertThat(listeOperation.get(1).getIdOperation).isEqualTo("3");
+        assertThat(listeOperation.get(0).getIdOperation()).isEqualTo("2");
+        assertThat(listeOperation.get(1).getIdOperation()).isEqualTo("3");
 
 
 
