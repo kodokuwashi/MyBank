@@ -1,6 +1,6 @@
 <div class="container">
     <div class="error" ng-if="loadingError">
-        <h2>Erreur de chargement des comptes!</h2>
+        <h2>Erreur de chargement des opérations !</h2>
         <p>{{ loadingError.statusText }}</p>
     </div>
 
@@ -8,23 +8,23 @@
         <div class="col-md-8">
             <div class="box">
                 <div class="box-title">
-                    <h2>Comptes</h2>
+                    <h2>Operation</h2>
                 </div>
                 <div class="box-content">
-                    <div class="no-content" ng-if="comptes.length == 0">Aucun compte</div>
-                    <table class="table table-condensed rbrsva-table" ng-if="comptes.length > 0">
+                    <div class="no-content" ng-if="operations.length == 0">Aucune opération</div>
+                    <table class="table table-condensed rbrsva-table" ng-if="operations.length > 0">
                         <thead>
                         <tr>
                             <th>Libellé</th><th>Propriétaire</th><th>Solde</th><th>Voir</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="compte in comptes">
-                            <td>{{ compte.libelle }}</td>
-                            <td>{{ compte.proprietaire }}</td>
-                            <td>{{ compte.solde }}</td>
+                        <tr ng-repeat="operation in operations">
+                            <td>{{ operation.libelle }}</td>
+                            <td>{{ operation.proprietaire }}</td>
+                            <td>{{ operation.solde }}</td>
                             <td>
-                                <a ui-sref="compte({idCompte: compte.idCompte})" class="button-wrapper">
+                                <a href="{{ $state.href('compte', {idCompte: compte.idCompte}) }}" class="button-wrapper">
                                     <button type="button" class="btn btn-default btn-sm">Voir</button>
                                 </a>
                             </td>
@@ -32,12 +32,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="box">
-                <button type="button" class="btn btn-primary" ng-click="creerCompte()">Créer</button>
             </div>
         </div>
     </div>

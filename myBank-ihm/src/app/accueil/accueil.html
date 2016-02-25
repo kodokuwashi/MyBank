@@ -11,6 +11,7 @@
           <h2>Comptes</h2>
         </div>
         <div class="box-content">
+          <h2>{{ showModal }}</h2>
           <div class="no-content" ng-if="comptes.length == 0">Aucun compte</div>
           <table class="table table-condensed rbrsva-table" ng-if="comptes.length > 0">
             <thead>
@@ -32,12 +33,6 @@
             </tbody>
           </table>
         </div>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-      <div class="box">
-        <button type="button" class="btn btn-primary" ng-click="creerCompte()">Créer</button>
       </div>
     </div>
   </div>

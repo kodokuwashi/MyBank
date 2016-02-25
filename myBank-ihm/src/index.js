@@ -24,6 +24,18 @@ var myBankApp = angular.module('MyBankApp', ['ui.router', 'ui.bootstrap', 'resta
         }
       }
     })
+    .state('compte', {
+          url: '/compte',
+          params: {
+            idCompte: null,
+          },
+          views: {
+            'main': {
+              templateUrl: 'app/compte/compte.html',
+              controller: 'CompteCtrl'
+            }
+          }
+        })
     .state('operations', {
       url: '/operations',
       views: {
