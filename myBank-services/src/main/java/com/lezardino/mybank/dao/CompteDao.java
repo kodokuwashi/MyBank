@@ -51,6 +51,26 @@ public interface CompteDao {
     List<Compte> listerComptes(final int offset, final int limit, final Direction direction);
 
     /**
+     * Récupère la liste des comptes
+     *
+     * @param proprietaire : proprietaire des compte à lister
+     * @param direction : selection du sens de tri
+     * @return partie de la liste des comptes
+     */
+    List<Compte> listerComptesbyProprietaire(final String proprietaire, final Direction direction);
+
+    /**
+     * Récupère la liste des comptes
+     *
+     * @param offset de démarrage de la liste
+     * @param limit sur le nombre de comptes retournées
+     * @param proprietaire : proprietaire des compte à lister
+     * @param direction : selection du sens de tri
+     * @return partie de la liste des comptes
+     */
+    List<Compte> listerComptesbyProprietaire(final int offset, final int limit, final String proprietaire, final Direction direction);
+
+    /**
      * Récupère un compte en base par son nom et son propriétaire
      *
      * @param libelle du compte

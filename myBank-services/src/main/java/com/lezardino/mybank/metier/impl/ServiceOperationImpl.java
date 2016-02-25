@@ -28,7 +28,7 @@ public class ServiceOperationImpl implements IServiceOperation {
     private transient OperationDao operationDao;
 
     /** pattern de l'url de la ressource compte */
-    private static final String URI_PATTERN = "/operation?offset={0}&limit={1}&direction={2}";
+    private static final String URI_PATTERN = "/operation?offset={0}&limit={1}{2}";
 
     /**
      * Préfixe de l'URL pour les comptes créés
@@ -79,9 +79,10 @@ public class ServiceOperationImpl implements IServiceOperation {
         List<Operation> listeOperation = this.operationDao.listerOperations(offset, limit, direction);
 
         final RSList<Operation> rsOperation = new RSList<>(URI_PATTERN, resultsCount, listeOperation);
-        rsOperation.setPreviousLink(offset, limit, direction);
-        rsOperation.setSelfLink(offset, limit, direction);
-        rsOperation.setNextLink(offset, limit, resultsCount, direction);
+        String optionalParametres = "&direction=" + stringDirection;
+        rsOperation.setPreviousLink(offset, limit, optionalParametres);
+        rsOperation.setSelfLink(offset, limit, optionalParametres);
+        rsOperation.setNextLink(offset, limit, resultsCount, optionalParametres);
 
         return rsOperation;
     }

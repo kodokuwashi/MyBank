@@ -5,10 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -33,7 +30,7 @@ public class ServiceCompteImpl implements IServiceCompte {
     private transient CompteDao compteDao;
 
     /** pattern de l'url de la ressource compte */
-    private static final String URI_PATTERN = "/compte?offset={0}&limit={1}&direction={2}";
+    private static final String URI_PATTERN = "/compte?offset={0}&limit={1}{2}";
 
     /**
      * Préfixe de l'URL pour les comptes créés
@@ -58,6 +55,9 @@ public class ServiceCompteImpl implements IServiceCompte {
         return Response.created(URI.create(resourceUri)).build();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Path("/{identifiant}")
     public Compte recupererCompte(@Valid @NotNull @PathParam("identifiant") String identifiant)
@@ -84,9 +84,32 @@ public class ServiceCompteImpl implements IServiceCompte {
         List<Compte> listeCompte = this.compteDao.listerComptes(offset, limit, direction);
 
         final RSList<Compte> rsCompte = new RSList<>(URI_PATTERN, resultsCount, listeCompte);
-        rsCompte.setPreviousLink(offset, limit, direction);
-        rsCompte.setSelfLink(offset, limit, direction);
-        rsCompte.setNextLink(offset, limit, resultsCount, direction);
+        String optionalParametres = "&direction=" + stringDirection;
+        rsCompte.setPreviousLink(offset, limit, optionalParametres);
+        rsCompte.setSelfLink(offset, limit, optionalParametres);
+        rsCompte.setNextLink(offset, limit, resultsCount, optionalParametres);
+
+        return rsCompte;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public RSList<Compte> listAllByProprietaire(final Integer offset, final Integer limit, final String stringDirection, final String proprietaire)
+            throws ErreurFonctionnelle{
+        long resultsCount = this.compteDao.nombreComptes();
+        Direction direction = Direction.ASC;
+        if(stringDirection.equals("DESC")){
+            direction = Direction.DESC;
+        }
+        List<Compte> listeCompte = this.compteDao.listerComptesbyProprietaire(offset, limit, proprietaire, direction);
+
+        final RSList<Compte> rsCompte = new RSList<>(URI_PATTERN, resultsCount, listeCompte);
+        String optionalParametres = "&direction=" + stringDirection + "&proprietaire=" + proprietaire;
+        rsCompte.setPreviousLink(offset, limit, optionalParametres);
+        rsCompte.setSelfLink(offset, limit, optionalParametres);
+        rsCompte.setNextLink(offset, limit, resultsCount, optionalParametres);
 
         return rsCompte;
     }

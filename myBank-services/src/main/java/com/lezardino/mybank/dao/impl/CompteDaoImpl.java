@@ -53,6 +53,25 @@ public class CompteDaoImpl implements CompteDao {
     }
 
     @Override
+    public List<Compte> listerComptesbyProprietaire(String proprietaire, Direction direction) {
+        final Query query = new Query();
+        query.with(new Sort(direction, Constantes.ChampCollectionCompte.IDCOMPTE));
+        query.addCriteria(Criteria.where(Constantes.ChampCollectionCompte.PROPRIETAIRE).is(proprietaire));
+        return mongoOperations.find(query, Compte.class);
+    }
+
+    @Override
+    public List<Compte> listerComptesbyProprietaire(int offset, int limit, String proprietaire, Direction direction) {
+        final Query query = new Query();
+        query.skip(offset);
+        query.limit(limit);
+
+        query.with(new Sort(direction, Constantes.ChampCollectionCompte.IDCOMPTE));
+        query.addCriteria(Criteria.where(Constantes.ChampCollectionCompte.PROPRIETAIRE).is(proprietaire));
+        return mongoOperations.find(query, Compte.class);
+    }
+
+    @Override
     public Compte recupererCompteById(String idCompte) {
         final Query query = new Query();
         query.addCriteria(Criteria.where(Constantes.ChampCollectionCompte.IDCOMPTE).is(idCompte));
@@ -66,4 +85,5 @@ public class CompteDaoImpl implements CompteDao {
                 .is(libelle).and(Constantes.ChampCollectionCompte.PROPRIETAIRE).is(proprietaire));
         return mongoOperations.findOne(query, Compte.class);
     }
+
 }

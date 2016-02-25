@@ -27,7 +27,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * Interface de la ressource Prix
+ * Interface de la ressource Operation
  *
  * @author pisalaun
  *
@@ -59,9 +59,9 @@ public interface IServiceOperation {
     /**
      * Retourne l'ensemble des opérations présents dans le référentiel pour un compte donnee
      *
-     * @param offset : décalage pour la prise en compte des tranche de numeros
-     * @param limit : nombre maximum de tranche de numeros à récupérer
-     * @param idCompte : identifiant du compte
+     * @param offset : décalage pour la prise en compte des Operations
+     * @param limit : nombre maximum d'operation à récupérer
+     * @param idCompte : identifiant de l'operation
      * @return RSList<Operation>
      * @throws ErreurFonctionnelle : Erreur metier
      */

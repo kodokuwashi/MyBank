@@ -103,6 +103,29 @@ public class TestCompteDao {
     }
 
     @Test
+    public void testListerCompteByProprietaireDao() {
+
+        String libelle = "LivretA";
+        String proprietaire = "Pierre";
+        BigDecimal solde = new BigDecimal(10.50);
+        Compte compte1 = new Compte(libelle, proprietaire, solde);
+        Compte compte2 = new Compte(libelle, proprietaire, solde);
+        Compte compte3 = new Compte(libelle, "Deborah", solde);
+
+        compteDao.enregistrerCompte(compte1);
+        compteDao.enregistrerCompte(compte2);
+        compteDao.enregistrerCompte(compte3);
+        List<Compte> listeCompte = compteDao.listerComptes(Direction.ASC);
+        assertThat(listeCompte).isNotNull();
+        assertThat(listeCompte.size()).isEqualTo(3);
+
+        listeCompte = compteDao.listerComptesbyProprietaire(1, 2, proprietaire, Direction.ASC);
+        assertThat(listeCompte).isNotNull();
+        assertThat(listeCompte.size()).isEqualTo(1);
+        assertThat(listeCompte.get(0)).isEqualTo(compte2);
+    }
+
+    @Test
     public void testSupprimerCompteDao() {
 
         String libelle = "LivretA";

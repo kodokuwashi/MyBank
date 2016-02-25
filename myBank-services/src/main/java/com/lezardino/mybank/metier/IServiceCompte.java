@@ -36,7 +36,7 @@ import com.lezardino.mybank.modele.Compte;
 import com.lezardino.mybank.ressource.RSList;
 
 /**
- * Interface de la ressource Prix
+ * Interface de la ressource Compte
  *
  * @author pisalaun
  *
@@ -66,8 +66,9 @@ public interface IServiceCompte {
     /**
      * Retourne l'ensemble des compte présents dans le référentiel
      *
-     * @param offset : décalage pour la prise en compte des tranche de numeros
-     * @param limit : nombre maximum de tranche de numeros à récupérer
+     * @param offset : décalage pour la prise en compte des compte
+     * @param limit : nombre maximum de compte à récupérer
+     * @param stringDirection : ordre de tri des comptes
      * @return RSList<Compte>
      * @throws ErreurFonctionnelle : Erreur metier
      */
@@ -75,6 +76,22 @@ public interface IServiceCompte {
     RSList<Compte> listAll(@DefaultValue("0") @QueryParam("offset") final Integer offset,
            @DefaultValue("2") @QueryParam("limit") final Integer limit,
            @DefaultValue("ASC") @QueryParam("direction") final String stringDirection) throws ErreurFonctionnelle;
+
+    /**
+     * Retourne l'ensemble des comptes d'un propriétaire présents dans le référentiel
+     *
+     * @param offset : décalage pour la prise en compte des comptes
+     * @param limit : nombre maximum de compte à récupérer
+     * @param proprietaire : Nom du propritaire des comptes
+     * @param stringDirection : ordre de tri des comptes
+     * @return RSList<Compte>
+     * @throws ErreurFonctionnelle : Erreur metier
+     */
+    @GET
+    RSList<Compte> listAllByProprietaire(@DefaultValue("0") @QueryParam("offset") final Integer offset,
+                           @DefaultValue("2") @QueryParam("limit") final Integer limit,
+                           @DefaultValue("ASC") @QueryParam("direction") final String stringDirection,
+                           @QueryParam("proprietaire") @Valid @NotNull final String proprietaire) throws ErreurFonctionnelle;
 
     /**
      * Supprime le compte présent en base

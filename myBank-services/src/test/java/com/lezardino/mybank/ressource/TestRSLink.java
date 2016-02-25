@@ -11,9 +11,9 @@ public class TestRSLink {
     public void testRSLink() {
         RSLink rsLink = new RSLink("/comptes?offset={0}&limit={1}&direction={2}");
 
-        rsLink.setPreviousLink(2, 2, Direction.ASC);
-        rsLink.setSelfLink(2, 2, Direction.ASC);
-        rsLink.setNextLink(2, 2, 8, Direction.ASC);
+        rsLink.setPreviousLink(2, 2, Direction.ASC.toString());
+        rsLink.setSelfLink(2, 2, Direction.ASC.toString());
+        rsLink.setNextLink(2, 2, 8, Direction.ASC.toString());
 
         assertThat(rsLink.toString())
         .isEqualTo(

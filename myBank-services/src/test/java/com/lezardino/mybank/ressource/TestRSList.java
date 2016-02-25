@@ -15,7 +15,7 @@ public class TestRSList {
     @Test
     public void testRSList() {
         /** Masque de l'URL */
-        String URI_PATTERN = "/comptes?offset={0}&limit={1}&direction={2}";
+        String URI_PATTERN = "/comptes?offset={0}&limit={1}{2}";
 
         Compte compte1 = new Compte("compte1", "testeur", new BigDecimal("10.50"));
         Compte compte2 = new Compte("compte2", "testeur", new BigDecimal("8.22"));
@@ -32,7 +32,7 @@ public class TestRSList {
 
         assertThat(rsListCompte.toString())
         .isEqualTo(
-                "RSList{resultsCount=6, items=[Compte{idCompte='null', libelle='compte1', proprietaire='testeur', solde='10,50'}, Compte{idCompte='null', libelle='compte2', proprietaire='testeur', solde='8,22'}]} RSLink{uriPattern='/comptes?offset={0}&limit={1}&direction={2}', links=null}");
+                "RSList{resultsCount=6, items=[Compte{idCompte='null', libelle='compte1', proprietaire='testeur', solde='10,50'}, Compte{idCompte='null', libelle='compte2', proprietaire='testeur', solde='8,22'}]} RSLink{uriPattern='/comptes?offset={0}&limit={1}{2}', links=null}");
     }
 
 }

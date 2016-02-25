@@ -42,7 +42,7 @@ public class RSLink {
      * @param parametres optionnels
      * @return le builder, pour chaîner les ajouts
      */
-    private void addLinkUri(final TypeRSLink typeLien, Object... parametres) {
+    private void addLinkUri(final TypeRSLink typeLien, final Object... parametres) {
         addLink(typeLien, MessageFormat.format(this.uriPattern, parametres));
     }
 
@@ -51,9 +51,9 @@ public class RSLink {
      *
      * @param offset : de démarrage de la liste
      * @param limit : sur le nombre de tarif retourné
-     * @param direction : ordre de tri
+     * @param optionalParametres : ordre de tri
      */
-    public void setPreviousLink(final int offset, final int limit, final Direction direction) {
+    public void setPreviousLink(final int offset, final int limit, final String optionalParametres) {
         if (offset > 0) {
             int previousOffset = offset - limit;
             int previousLimit = limit;
@@ -61,7 +61,7 @@ public class RSLink {
                 previousLimit = limit + previousOffset;
                 previousOffset = 0;
             }
-            this.addLinkUri(TypeRSLink.LIEN_PREVIOUS, previousOffset, previousLimit, direction);
+            this.addLinkUri(TypeRSLink.LIEN_PREVIOUS, previousOffset, previousLimit, optionalParametres);
         }
     }
 
@@ -70,10 +70,10 @@ public class RSLink {
      *
      * @param offset : de démarrage de la liste
      * @param limit : sur le nombre de tarif retourné
-     * @param direction : ordre de tri
+     * @param optionalParametres : ordre de tri
      */
-    public void setSelfLink(final int offset, final int limit, final Direction direction) {
-        this.addLinkUri(TypeRSLink.LIEN_SELF, offset, limit, direction);
+    public void setSelfLink(final int offset, final int limit, final String optionalParametres) {
+        this.addLinkUri(TypeRSLink.LIEN_SELF, offset, limit, optionalParametres);
     }
 
     /**
@@ -82,12 +82,12 @@ public class RSLink {
      * @param offset : de démarrage de la liste
      * @param limit : sur le nombre de tarif retourné
      * @param resultCount : nombre d'enregistrement trouvé
-     * @param direction : ordre de tri
+     * @param optionalParametres : ordre de tri
      */
-    public void setNextLink(final int offset, final int limit, final long resultCount, final Direction direction) {
+    public void setNextLink(final int offset, final int limit, final long resultCount, final String optionalParametres) {
         final int nextOffset = offset + limit;
         if (nextOffset < resultCount) {
-            this.addLinkUri(TypeRSLink.LIEN_NEXT, nextOffset, limit, direction);
+            this.addLinkUri(TypeRSLink.LIEN_NEXT, nextOffset, limit, optionalParametres);
         }
     }
 
