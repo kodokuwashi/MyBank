@@ -50,6 +50,7 @@ public interface IServiceBudjet {
      * @throws ErreurFonctionnelle : Erreur metier
      */
     @GET
+    @Path("/{identifiant}")
     Budjet recupererBudjet(@Valid @NotNull @PathParam("identifiant") final String identifiant)
             throws ErreurFonctionnelle;
 

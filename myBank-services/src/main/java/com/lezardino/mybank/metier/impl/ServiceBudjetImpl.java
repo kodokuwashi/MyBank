@@ -1,22 +1,16 @@
 package com.lezardino.mybank.metier.impl;
 
 import com.lezardino.mybank.dao.BudjetDao;
-import com.lezardino.mybank.dao.CompteDao;
 import com.lezardino.mybank.erreur.ErreurFonctionnelle;
 import com.lezardino.mybank.metier.IServiceBudjet;
-import com.lezardino.mybank.metier.IServiceCompte;
 import com.lezardino.mybank.modele.Budjet;
-import com.lezardino.mybank.modele.Compte;
 import com.lezardino.mybank.ressource.RSList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -63,8 +57,7 @@ public class ServiceBudjetImpl implements IServiceBudjet {
      * {@inheritDoc}
      */
     @Override
-    @Path("/{identifiant}")
-    public Budjet recupererBudjet(@Valid @NotNull @PathParam("identifiant") String identifiant)
+    public Budjet recupererBudjet(String identifiant)
             throws ErreurFonctionnelle {
         final Budjet budjet = this.budjetDao.recupererBudjet(identifiant);
         if (budjet == null) {

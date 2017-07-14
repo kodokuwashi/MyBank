@@ -23,7 +23,6 @@ import org.springframework.stereotype.Component;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -32,8 +31,6 @@ import javax.ws.rs.core.Response;
  * @author pisalaun
  *
  */
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 @Component
 public interface IServiceOperation {
 
@@ -53,6 +50,7 @@ public interface IServiceOperation {
      * @throws ErreurFonctionnelle : Erreur metier
      */
     @GET
+    @Path("/{identifiant}")
     Operation recupererOperation(@Valid @NotNull @PathParam("identifiant") final String idOperation)
             throws ErreurFonctionnelle;
 

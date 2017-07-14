@@ -54,7 +54,6 @@ public class ServiceOperationImpl implements IServiceOperation {
     }
 
     @Override
-    @Path("/{identifiant}")
     public Operation recupererOperation(String identifiant)
             throws ErreurFonctionnelle {
         final Operation operation = this.operationDao.recupererOperation(identifiant);

@@ -3,8 +3,6 @@ package com.lezardino.mybank.metier.impl;
 import java.net.URI;
 import java.util.List;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -59,8 +57,7 @@ public class ServiceCompteImpl implements IServiceCompte {
      * {@inheritDoc}
      */
     @Override
-    @Path("/{identifiant}")
-    public Compte recupererCompte(@Valid @NotNull @PathParam("identifiant") String identifiant)
+    public Compte recupererCompte(String identifiant)
             throws ErreurFonctionnelle {
         final Compte compte = this.compteDao.recupererCompteById(identifiant);
         if (compte == null) {

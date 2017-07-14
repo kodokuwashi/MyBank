@@ -17,16 +17,7 @@ package com.lezardino.mybank.metier;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 import org.springframework.stereotype.Component;
@@ -60,6 +51,7 @@ public interface IServiceCompte {
      * @throws ErreurFonctionnelle : Erreur metier
      */
     @GET
+    @Path("/{identifiant}")
     Compte recupererCompte(@Valid @NotNull @PathParam("identifiant") final String identifiant)
             throws ErreurFonctionnelle;
 
@@ -88,6 +80,7 @@ public interface IServiceCompte {
      * @throws ErreurFonctionnelle : Erreur metier
      */
     @GET
+    @Path("/orderByProprietaire")
     RSList<Compte> listAllByProprietaire(@DefaultValue("0") @QueryParam("offset") final Integer offset,
                            @DefaultValue("2") @QueryParam("limit") final Integer limit,
                            @DefaultValue("ASC") @QueryParam("direction") final String stringDirection,
